@@ -23,6 +23,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 const td = document.createElement('td');
                 td.textContent = readings[header].value;
                 dataRow.appendChild(td);
+
+                //Time
+            let timestamp = data.items[0].update_timestamp;
+            let readings = data.items[0].readings;
+            console.log(timestamp);
+            console.log(readings);
+            
+            $("#timestring").text(timestamp);
+
             });
             psiTable.appendChild(dataRow);
         })
