@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch('https://api.data.gov.sg/v1/environment/psi')
         .then(response => response.json())
         .then(data => {
+            console.log(data)
+
             const readings = data.items[0].readings;
             const psiTable = document.getElementById('psi-table');
 
