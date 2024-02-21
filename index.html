@@ -1,20 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment One: PSI Visualization</title>
+<meta charset="UTF-8">
+
+<!--<title>PSI Readings</title>-->
+<h1> Singapore's Pollution Standard Index (PSI) </h1>
+
+<!--<h4 id="timestring">2024-02-21T01:00:49+08:00</h4>-->
+<h2 id="timestring">Retrieval date: 2/21/2024, 8:48:51 PM</h2>
+
+<style>
+  table, th, td {
+    border: 1px solid rgb(247, 245, 245);
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 10px;
+  }
+  th {
+    background-color: #a39d93;
+  }
+</style>
 </head>
 <body>
-    <h1>Assignment One: PSI Visualization</h1>
-    <h4 id="timestring">2024-02-21T01:00:49+08:00</h4>
-    <div align="center" class="main" id="main">
-        <table id="psi-table">
-        
-        <!-- Table content will be added dynamically using JavaScript -->
-        </table>
 
-    <script src="script.js"></script>
+<h2>PSI Readings</h2>
+
+<div id="psiReadings"></div>
+
+<!--This is how to make comments in html-->
+<!--The JV begins now-->
+
+<script>
+async function fetchPSIData() {
+  const url = 'https://api.data.gov.sg/v1/environment/psi';
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    displayPSIReadings(data);
+  } catch (error) {
+    console.error('Error fetching PSI data:', error);
+    document.getElementById('psiReadings').innerHTML = '<p>Error loading PSI data.</p>';
+
+    //This is how we comment in JV
+    //Time Stamp
+    let timestamp = data.items[0].update_timestamp;
+    let readings = data.items[0].readings;
+    console.log(timestamp);
+    console.log(readings);
+    
+    $("#timestring").text(timestamp);
+  
+  }
+}
+
+function displayPSIReadings(data) {
+  const readings = data.items[0].readings;
+  const keys = Object.keys(readings);
+  let html = '<table><tr><th>Reading Type</th><th>National</th><th>South</th><th>North</th><th>East</th><th>West</th><th>Central</th></tr>';
+  
+  keys.forEach(key => {
+    html += `<tr><td>${key}</td>`;
+    const readingValues = readings[key];
+    for (const region in readingValues) {
+      html += `<td>${readingValues[region]}</td>`;
+    }
+    html += '</tr>';
+  });
+  
+  html += '</table>';
+  document.getElementById('psiReadings').innerHTML = html;
+}
+
+fetchPSIData();
+</script>
+
 </body>
 </html>
