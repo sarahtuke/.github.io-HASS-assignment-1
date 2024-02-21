@@ -5,7 +5,7 @@
 
 <!--This is how to make comments in html-->
 
-<title>Assignment 01</title>
+<title>IDV: Assignment 01</title>
 
 <!--CSS Begins-->
 <style>
@@ -29,7 +29,6 @@
     color: white; /* Ensures text color is white for readability */
   }
 </style>
-
 </head>
 <body>
 
@@ -69,7 +68,8 @@ async function fetchPSIData() {
 function displayPSIReadings(data) {
   const readings = data.items[0].readings;
   const keys = Object.keys(readings);
-  let html = '<table><tr><th>Reading Type</th><th>National</th><th>South</th><th>North</th><th>East</th><th>West</th><th>Central</th></tr>';
+  //let html = '<table><tr><th>Reading Type</th><th>National</th><th>South</th><th>North</th><th>East</th><th>West</th><th>Central</th></tr>';
+    let html = '<table><tr><th>Reading Type<th>South</th><th>North</th><th>East</th><th>West</th><th>Central</th></tr>';
   
   keys.forEach(key => {
     html += `<tr><td>${key}</td>`;
