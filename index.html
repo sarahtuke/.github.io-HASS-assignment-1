@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>PSI Readings</title>
+<h4 id="timestring">2024-02-21T01:00:49+08:00</h4>
 <style>
   table, th, td {
     border: 1px solid black;
@@ -24,6 +25,7 @@
 
 <!--This is how to make comments in html-->
 <!--The JV begins now-->
+
 <script>
 async function fetchPSIData() {
   const url = 'https://api.data.gov.sg/v1/environment/psi';
@@ -34,6 +36,16 @@ async function fetchPSIData() {
   } catch (error) {
     console.error('Error fetching PSI data:', error);
     document.getElementById('psiReadings').innerHTML = '<p>Error loading PSI data.</p>';
+
+    //This is how we comment in JV
+    //Time Stamp
+    let timestamp = data.items[0].update_timestamp;
+    let readings = data.items[0].readings;
+    console.log(timestamp);
+    console.log(readings);
+    
+    $("#timestring").text(timestamp);
+  
   }
 }
 
