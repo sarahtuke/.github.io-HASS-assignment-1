@@ -3,14 +3,34 @@
 <head>
 <meta charset="UTF-8">
 
-<!--<title>PSI Readings</title>-->
-<h1> Singapore's Pollution Standard Index (PSI) </h1>
+<!--This is how to make comments in html-->
+<title>Assignment 01</title>
 
+<h1>Singapore's Pollution Standard Index (PSI)</h1>
+
+<!--Timestamp-->
 <!--<h4 id="timestring">2024-02-21T01:00:49+08:00</h4>-->
 <h2 id="timestring">Retrieval date: 2/21/2024, 8:48:51 PM</h2>
 
+
+<!--CSS Begins-->
 <style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center; /* Center text for all text elements in the body */
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   table, th, td {
+
     border: 1px solid rgb(247, 245, 245);
     border-collapse: collapse;
   }
@@ -18,19 +38,22 @@
     padding: 10px;
   }
   th {
-    background-color: #a39d93;
+    background-color: #787672;
+  }
+    table {
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
 </head>
 <body>
 
-<h2>PSI Readings</h2>
 
+
+<!--<h2>PSI Readings</h2>
 <div id="psiReadings"></div>
 
-<!--This is how to make comments in html-->
 <!--The JV begins now-->
-
 <script>
 async function fetchPSIData() {
   const url = 'https://api.data.gov.sg/v1/environment/psi';
